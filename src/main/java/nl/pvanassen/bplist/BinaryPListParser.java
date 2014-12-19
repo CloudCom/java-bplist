@@ -10,13 +10,9 @@
  */
 package nl.pvanassen.bplist;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -234,7 +230,7 @@ public class BinaryPListParser {
 	    elem.setContent(object.toString());
 	} else if (object instanceof byte[]) {
 	    elem.setName("data");
-	    elem.setContent(Base64.encodeBytes((byte[]) object));
+	    elem.setContent(Base64.encodeBytes((byte[]) object, Base64.DONT_BREAK_LINES));
 	} else if (object instanceof XMLGregorianCalendar) {
 	    elem.setName("date");
 	    elem.setContent(((XMLGregorianCalendar) object).toXMLFormat() + "Z");
